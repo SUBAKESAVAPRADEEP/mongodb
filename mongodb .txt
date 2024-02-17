@@ -1,0 +1,51 @@
+mongodb 
+1. To find all the information about each product, you can use the following query:
+mongodb
+db.products.find({})
+
+
+2. To find the product price which are between 400 to 800, you can use the following query:
+mongodb
+db.products.find({ price: { $gt: 400, $lt: 800 } })
+
+
+3. To find the product price which are not between 400 to 600, you can use the following query:
+mongodb
+db.products.find({ $or: [{ price: { $lt: 400 } }, { price: { $gt: 600 } }] })
+
+
+4. To list the four products which are greater than 500 in price, you can use the following query:
+mongodb
+db.products.find({ price: { $gt: 500 } }).limit(4)
+
+
+5. To find the product name and product material of each product, you can use the following query:
+mongodb
+db.products.find({}, { name: 1, material: 1 })
+
+
+6. To find the product with a row id of 10, you can use the following query:
+mongodb
+db.products.find({ _id: 10 })
+
+
+7. To find only the product name and product material, you can use the following query:
+mongodb
+db.products.find({}, { name: 1, material: 1, _id: 0 })
+
+
+8. To find all products which contain the value "soft" in product material, you can use the following query:
+mongodb
+db.products.find({ material: /soft/ })
+
+
+9. To find products which contain product color "indigo" and product price 492.00, you can use the following query:
+mongodb
+db.products.find({ $and: [{ color: "indigo" }, { price: 492.00 }] })
+
+10. To delete the products which have the same product price value, you can use the following query:
+mongodb
+db.products.deleteMany({ $expr: { $eq: ["$price", "$price"] } })
+
+
+
